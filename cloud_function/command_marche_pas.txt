@@ -1,0 +1,13 @@
+gcloud functions deploy curl-nginx \
+  --runtime python310 \
+  --trigger-topic my-scheduler-topic \
+  --memory 256MB \
+  --region us-central1 \
+  --entry-point curl_nginx
+
+
+gcloud scheduler jobs create http my-scheduler-job \
+  --schedule "0 7 * * *" \
+  --uri "https://REGION-PROJECT_ID.cloudfunctions.net/curl-nginx" \
+  --http-method GET \
+  --message-body ""

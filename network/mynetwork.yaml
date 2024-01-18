@@ -1,0 +1,6 @@
+apiVersion: networking.gke.io/v1
+kind: Network
+metadata:
+  name: mynetwork
+spec:
+  mtu: 1500
